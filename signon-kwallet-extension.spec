@@ -1,10 +1,10 @@
 Summary:        KWallet integration for Sign-on framework
 Name:           signon-kwallet-extension
-Version: 15.12.3
+Version: 16.04.0
 Release:        1
 License:        GPLv2+
 Group:          System/Base
-Source0:        http://fr2.rpmfind.net/linux/KDE/stable/plasma/%{name}-%{version}.tar.xz
+Source0:        http://download.kde.org/stable/applications/%{version}/src/%{name}-%{version}.tar.xz
 
 URL:            https://www.kde.org/
 
@@ -23,7 +23,7 @@ KWallet integration for Sign-on framework
 
 #------------------------------------------------------------------------------
 
-%define keyringkwallet_major 15
+%define keyringkwallet_major 16
 %define libkeyringkwallet %mklibname keyring-kwallet %{keyringkwallet_major}
 
 %package -n %libkeyringkwallet
