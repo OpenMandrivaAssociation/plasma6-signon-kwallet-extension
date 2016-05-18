@@ -1,25 +1,21 @@
 Summary:        KWallet integration for Sign-on framework
 Name:           signon-kwallet-extension
-Version: 16.04.1
-Release:        1
+Version:	16.04.1
+Release:        2
 License:        GPLv2+
 Group:          System/Base
 Source0:        http://download.kde.org/stable/applications/%{version}/src/%{name}-%{version}.tar.xz
-
 URL:            https://www.kde.org/
-
 BuildRequires:  cmake(ECM)
-
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
-
 BuildRequires:  pkgconfig(SignOnExtension)
 BuildRequires:	cmake(KF5Wallet)
 
 #BuildRequires:  kwallet-devel >= 5.0
 
 %description
-KWallet integration for Sign-on framework
+KWallet integration for Sign-on framework.
 
 #------------------------------------------------------------------------------
 
@@ -29,9 +25,10 @@ KWallet integration for Sign-on framework
 %package -n %libkeyringkwallet
 Summary: Runtime library for cantor
 Group: System/Libraries
+Provides: %{name} = %{EVRD}
 
 %description -n %libkeyringkwallet
-Runtime library for cantor
+Runtime library for %{name}.
 
 %files -n %libkeyringkwallet
 %_kde5_libdir/signon/extensions/libkeyring-kwallet.so
@@ -41,11 +38,10 @@ Runtime library for cantor
 %prep
 %setup -q 
 %apply_patches
+%cmake_kde5
 
 %build
-%cmake_kde5
-%ninja
+%ninja -C build
 
 %install
 %ninja_install -C build
-
