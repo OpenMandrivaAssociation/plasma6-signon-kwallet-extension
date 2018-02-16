@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   signon-kwallet-extension-17.12.1.tar.xz: 72e1e0a40dcf598c4c553348cc8771ed5603248f
+sources:
+  signon-kwallet-extension-17.12.2.tar.xz: 46554cb69bbe22f4d0d1a5330c14d33e89e04b7d
