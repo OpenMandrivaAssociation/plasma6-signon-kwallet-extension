@@ -2,7 +2,7 @@
 
 Summary:        KWallet integration for Sign-on framework
 Name:           signon-kwallet-extension
-Version:	19.04.3
+Version:	19.07.80
 Release:	1
 License:        GPLv2+
 Group:          System/Base
