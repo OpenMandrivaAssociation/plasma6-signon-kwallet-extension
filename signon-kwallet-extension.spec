@@ -2,11 +2,11 @@
 
 Summary:        KWallet integration for Sign-on framework
 Name:           signon-kwallet-extension
-Version:	19.11.90
+Version:	19.12.0
 Release:	1
 License:        GPLv2+
 Group:          System/Base
-Source0:        http://download.kde.org/%{stable}/applications/%{version}/src/%{name}-%{version}.tar.xz
+Source0:        http://download.kde.org/%{stable}/release-service/%{version}/src/%{name}-%{version}.tar.xz
 URL:            https://www.kde.org/
 BuildRequires:  cmake(ECM)
 BuildRequires:  pkgconfig(Qt5Core)
@@ -39,7 +39,7 @@ Runtime library for %{name}.
 
 %prep
 %setup -q 
-%apply_patches
+%autopatch -p1
 %cmake_kde5
 
 %build
