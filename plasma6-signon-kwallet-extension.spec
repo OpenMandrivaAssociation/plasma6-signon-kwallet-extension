@@ -1,12 +1,19 @@
+%define git 20240218
+%define gitbranch release/24.02
+%define gitbranchd %(echo %{gitbranch} |sed -e "s,/,-,g")
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Summary:        KWallet integration for Sign-on framework
 Name:           plasma6-signon-kwallet-extension
-Version:	24.01.95
-Release:	1
+Version:	24.01.96
+Release:	%{?git:0.%{git}.}1
 License:        GPLv2+
 Group:          System/Base
+%if 0%{?git:1}
+Source0:	https://invent.kde.org/network/signon-kwallet-extension/-/archive/%{gitbranch}/signon-kwallet-extension-%{gitbranchd}.tar.bz2#/signon-kwallet-extension-%{git}.tar.bz2
+%else
 Source0:        http://download.kde.org/%{stable}/release-service/%{version}/src/signon-kwallet-extension-%{version}.tar.xz
+%endif
 URL:            https://www.kde.org/
 BuildRequires:  cmake(ECM)
 BuildRequires:  pkgconfig(Qt6Core)
@@ -38,7 +45,7 @@ Runtime library for %{name}.
 #------------------------------------------------------------------------------
 
 %prep
-%autosetup -p1  -n signon-kwallet-extension-%{?git:master}%{!?git:%{version}}
+%autosetup -p1 -n signon-kwallet-extension-%{?git:%{gitbranchd}}%{!?git:%{version}}
 %cmake \
 	-DQT_MAJOR_VERSION=6 \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
