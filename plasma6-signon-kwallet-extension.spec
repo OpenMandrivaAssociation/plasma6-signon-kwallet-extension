@@ -6,7 +6,7 @@
 Summary:        KWallet integration for Sign-on framework
 Name:           plasma6-signon-kwallet-extension
 Version:	24.02.0
-Release:	%{?git:0.%{git}.}1
+Release:	%{?git:0.%{git}.}2
 License:        GPLv2+
 Group:          System/Base
 %if 0%{?git:1}
@@ -20,29 +20,16 @@ BuildRequires:  pkgconfig(Qt6Core)
 BuildRequires:  pkgconfig(Qt6DBus)
 BuildRequires:  pkgconfig(SignOnExtension)
 BuildRequires:	cmake(KF6Wallet)
+%define keyringkwallet_major 16
+%define oldlibkeyringkwallet %mklibname keyring-kwallet %{keyringkwallet_major}
+# The > here is not a typo -- we mean to obsolete the Plasma 6 version
+# but not the Plasma 5 compat version
+Obsoletes:	%{oldlibkeyringkwallet} > 24.0.0
 
 #BuildRequires:  kwallet-devel >= 6.0
 
 %description
 KWallet integration for Sign-on framework.
-
-#------------------------------------------------------------------------------
-
-%define keyringkwallet_major 16
-%define libkeyringkwallet %mklibname keyring-kwallet %{keyringkwallet_major}
-
-%package -n %libkeyringkwallet
-Summary: Runtime library for cantor
-Group: System/Libraries
-Provides: %{name} = %{EVRD}
-
-%description -n %libkeyringkwallet
-Runtime library for %{name}.
-
-%files -n %libkeyringkwallet
-%_libdir/signon/extensions/libkeyring-kwallet.so
-
-#------------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n signon-kwallet-extension-%{?git:%{gitbranchd}}%{!?git:%{version}}
@@ -56,3 +43,6 @@ Runtime library for %{name}.
 
 %install
 %ninja_install -C build
+
+%files
+%{_libdir}/signon/extensions/libkeyring-kwallet.so
