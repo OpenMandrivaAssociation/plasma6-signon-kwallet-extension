@@ -5,8 +5,8 @@
 
 Summary:        KWallet integration for Sign-on framework
 Name:           plasma6-signon-kwallet-extension
-Version:	24.12.3
-Release:	%{?git:0.%{git}.}2
+Version:	25.04.0
+Release:	%{?git:0.%{git}.}1
 License:        GPLv2+
 Group:          System/Base
 %if 0%{?git:1}
