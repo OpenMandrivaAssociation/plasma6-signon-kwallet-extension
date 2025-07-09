@@ -4,7 +4,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Summary:        KWallet integration for Sign-on framework
-Name:           plasma6-signon-kwallet-extension
+Name:           signon-kwallet-extension
 Version:	25.04.0
 Release:	%{?git:0.%{git}.}1
 License:        GPLv2+
