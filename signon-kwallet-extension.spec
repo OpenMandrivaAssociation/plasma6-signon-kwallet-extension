@@ -5,7 +5,7 @@
 
 Summary:        KWallet integration for Sign-on framework
 Name:           signon-kwallet-extension
-Version:	25.04.0
+Version:	25.04.3
 Release:	%{?git:0.%{git}.}1
 License:        GPLv2+
 Group:          System/Base
@@ -28,21 +28,14 @@ Obsoletes:	%{oldlibkeyringkwallet} > 24.0.0
 
 #BuildRequires:  kwallet-devel >= 6.0
 
+%rename plasma6-signon-kwallet-extension
+
+BuildSystem:	cmake
+BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+BuildOption:	-DQT_MAJOR_VERSION=6
+
 %description
 KWallet integration for Sign-on framework.
-
-%prep
-%autosetup -p1 -n signon-kwallet-extension-%{?git:%{gitbranchd}}%{!?git:%{version}}
-%cmake \
-	-DQT_MAJOR_VERSION=6 \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja -C build
-
-%install
-%ninja_install -C build
 
 %files
 %{_libdir}/signon/extensions/libkeyring-kwallet.so
